@@ -8,7 +8,7 @@ import pacienteRoutes from './routes/pacienteRoutes.js';
 const app = express();
 app.use(express.json());
 dotenv.config();
-
+//conectar bd
 conectarDB();
 const dominiosPermitidos = [process.env.FRONTEND_URL];
 const corsOptions = {
@@ -24,7 +24,6 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-
 app.use('/api/veterinarios', veterinarioRoutes);
 app.use('/api/pacientes', pacienteRoutes);
 
