@@ -35,10 +35,4 @@ app.listen(PORT,()=>{
     console.log('servidor funcionando en el puerto 4000');
 });
 
-// Enable cors
-app.use(
-    cors({
-      origin: '*',
-    }),
-  );
 
