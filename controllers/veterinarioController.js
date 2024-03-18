@@ -114,7 +114,7 @@ const olvidePassword = async (req, res) =>{
             token: existeVeterinario.token
 
         });
-        res.json({msg: 'Hemos enviado un email con las instrucciones'});
+        res.json({msg: 'Hemos enviado un email con las instrucciones (spam)'});
     } catch (error) {
         console.log(error);
         
