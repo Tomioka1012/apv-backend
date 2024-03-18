@@ -26,7 +26,8 @@ const corsOptions = {
             // El origen no está permitido
             callback(new Error('No permitido por CORS'));
         }
-    }
+    },
+    optionsSuccessStatus: 200
 };
 
 app.use(cors(corsOptions));
