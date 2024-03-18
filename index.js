@@ -12,14 +12,20 @@ dotenv.config();
 conectarDB();
 const dominiosPermitidos = [process.env.FRONTEND_URL];
 const corsOptions = {
-    origin: function(origin, callback){
-        if(dominiosPermitidos.indexOf(origin) !== -1){
-            //el origen del req esta permitido
-            callback(null,true);
-        }else{
-            callback(new Error('No permitido por cors'));
+    origin: function(origin, callback) {
+        if (!origin) {
+            // Permitir solicitudes sin origen (por ejemplo, solicitudes locales)
+            callback(null, true);
+            return;
         }
 
+        if (dominiosPermitidos.includes(origin)) {
+            // El origen está en la lista de dominios permitidos
+            callback(null, true);
+        } else {
+            // El origen no está permitido
+            callback(new Error('No permitido por CORS'));
+        }
     }
 };
 
