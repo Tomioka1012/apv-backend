@@ -14,13 +14,13 @@ const dominiosPermitidos = [process.env.FRONTEND_URL];
 const corsOptions = {
     origin: function(origin, callback) {
         //origin = process.env.FRONTEND_URL;
-        if (!origin) {
+        if (!origin.toString()) {
             // Permitir solicitudes sin origen (por ejemplo, solicitudes locales)
             callback(null, true);
             return;
         }
 
-        if (dominiosPermitidos.includes(origin)) {
+        if (dominiosPermitidos.includes(origin.toString())) {
             // El origen está en la lista de dominios permitidos
             callback(null, true);
         } else {
