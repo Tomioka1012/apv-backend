@@ -10,18 +10,17 @@ app.use(express.json());
 dotenv.config();
 //conectar bd
 conectarDB();
-const dominioPermitido = process.env.FRONTEND_URL;
+const dominiosPermitidos = [process.env.FRONTEND_URL];
 const corsOptions = {
     origin: function(origin, callback) {
-        console.log(origin);
-        console.log(dominioPermitido);
+        //origin = process.env.FRONTEND_URL;
         if (!origin) {
             // Permitir solicitudes sin origen (por ejemplo, solicitudes locales)
             callback(null, true);
             return;
         }
 
-        if (origin === dominioPermitido) {
+        if (dominiosPermitidos.includes(origin)) {
             // El origen está en la lista de dominios permitidos
             callback(null, true);
         } else {
