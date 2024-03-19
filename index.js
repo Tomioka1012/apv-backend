@@ -1,6 +1,6 @@
 import  express  from "express";
 import dotenv from "dotenv";
-import cors from "cors";
+//import cors from "cors";
 import conectarDB from "./config/db.js";
 import veterinarioRoutes from "./routes/veterinarioRoutes.js"
 import pacienteRoutes from './routes/pacienteRoutes.js';
@@ -29,13 +29,23 @@ const corsOptions = {
     //     }
     // },
     // optionsSuccessStatus: 200
-    "origin": "*",
-    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-    "preflightContinue": false,
-    "optionsSuccessStatus": 204
+    //NO TENIA OPCIÓN EL TIEMPO SE ME AGOTABA:()
+    // "origin": "*",
+    // "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    // "preflightContinue": false,
+    // "optionsSuccessStatus": 204
 };
 
-app.use(cors(corsOptions));
+//app.use(cors(corsOptions));
+app.use((req, res, next) => {
+    //allow access to current url. work for https as well
+    res.setHeader('Access-Control-Allow-Origin',req.header('Origin'));
+    res.removeHeader('x-powered-by');
+    //allow access to current method
+    res.setHeader('Access-Control-Allow-Methods',req.method);
+    res.setHeader('Access-Control-Allow-Headers','Content-Type');
+    next();
+  })
 app.use('/api/veterinarios', veterinarioRoutes);
 app.use('/api/pacientes', pacienteRoutes);
 
