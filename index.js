@@ -13,7 +13,7 @@ conectarDB();
 const dominiosPermitidos = [process.env.FRONTEND_URL];
 const corsOptions = {
     origin: function(origin, callback) {
-        //origin = process.env.FRONTEND_URL;
+        origin = process.env.FRONTEND_URL;
         if (!origin.toString()) {
             // Permitir solicitudes sin origen (por ejemplo, solicitudes locales)
             callback(null, true);
@@ -31,11 +31,7 @@ const corsOptions = {
     optionsSuccessStatus: 200
 };
 
-app.use(
-    cors({
-      origin: '*',
-    }),
-  );
+app.use(cors(corsOptions));
 app.use('/api/veterinarios', veterinarioRoutes);
 app.use('/api/pacientes', pacienteRoutes);
 
