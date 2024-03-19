@@ -19,7 +19,7 @@ const corsOptions = {
             return;
         }
 
-        if (dominiosPermitidos.includes(origin)) {
+        if (dominiosPermitidos.indexOf(req.header('Origin') !== -1)) {
             // El origen está en la lista de dominios permitidos
             callback(null, true);
         } else {
