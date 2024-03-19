@@ -14,7 +14,7 @@ const dominiosPermitidos = [process.env.FRONTEND_URL];
 const corsOptions = {
     origin: function(origin, callback) {
         
-        if (!origin) {
+        if (origin === 'http://localhost:5173/') {
             // Permitir solicitudes sin origen (por ejemplo, solicitudes locales)
             callback(null, true);
             return;
@@ -31,7 +31,7 @@ const corsOptions = {
     
 };
 
-app.use(cors(corsOptions));
+app.use(cors( {origin: '*'}));
 // app.use((req, res, next) => {
 //     //allow access to current url. work for https as well
 //     res.setHeader('Access-Control-Allow-Origin',req.header('Origin'));
