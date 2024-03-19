@@ -12,23 +12,27 @@ dotenv.config();
 conectarDB();
 const dominiosPermitidos = [process.env.FRONTEND_URL];
 const corsOptions = {
-    origin: function(origin, callback) {
-        origin = process.env.FRONTEND_URL;
-        if (!origin.toString()) {
-            // Permitir solicitudes sin origen (por ejemplo, solicitudes locales)
-            callback(null, true);
-            return;
-        }
+    // origin: function(origin, callback) {
+    //     origin = process.env.FRONTEND_URL;
+    //     if (!origin.toString()) {
+    //         // Permitir solicitudes sin origen (por ejemplo, solicitudes locales)
+    //         callback(null, true);
+    //         return;
+    //     }
 
-        if (dominiosPermitidos.includes(origin.toString())) {
-            // El origen está en la lista de dominios permitidos
-            callback(null, true);
-        } else {
-            // El origen no está permitido
-            callback(new Error('No permitido por CORS'));
-        }
-    },
-    optionsSuccessStatus: 200
+    //     if (dominiosPermitidos.includes(origin.toString())) {
+    //         // El origen está en la lista de dominios permitidos
+    //         callback(null, true);
+    //     } else {
+    //         // El origen no está permitido
+    //         callback(new Error('No permitido por CORS'));
+    //     }
+    // },
+    // optionsSuccessStatus: 200
+    "origin": "*",
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "preflightContinue": false,
+    "optionsSuccessStatus": 204
 };
 
 app.use(cors(corsOptions));
